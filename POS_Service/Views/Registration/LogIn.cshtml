@@ -1,0 +1,109 @@
+﻿@model POS_Service.Models.LogInData
+@{
+    ViewBag.Title = "LogIn";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<br />
+
+@using (Html.BeginForm("AddMe", "Registration"))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.fName)
+        @Html.TextBoxFor(m => m.fName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.fName)
+    </div>
+    <br />
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.lName)
+        @Html.TextBoxFor(m => m.lName, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.lName)
+    </div>
+    <br />
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.dateOfBrt)
+        @Html.TextBoxFor(m => m.dateOfBrt, new { @class = "form-control", Type = "date" })
+        @Html.ValidationMessageFor(m => m.lName)
+    </div>
+    <br />
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.username)
+        @Html.TextBoxFor(m => m.username, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.username)
+    </div>
+    <br />
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.password)
+        @Html.TextBoxFor(m => m.password, new { @class = "form-control", Type = "password" })
+        @Html.ValidationMessageFor(m => m.password)
+    </div>
+    <br />
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.cfmPass)
+        @Html.TextBoxFor(m => m.cfmPass, new { @class = "form-control", Type = "password" })
+        @Html.ValidationMessageFor(m => m.cfmPass)
+    </div>
+    <br />
+
+    <div class="form-group">
+        Male @Html.RadioButtonFor(m => m.gender, "Male")
+        Female @Html.RadioButtonFor(m => m.gender, "Female")
+    </div>
+    <br />
+    
+    <div class="checkbox">
+        <label>
+            @Html.CheckBoxFor(m => m.isGradute) Is graduate ?
+        </label>
+    </div>
+    <br />
+
+    List<SelectListItem> listItm = new List<SelectListItem>();
+    listItm.Add(new SelectListItem()
+    {
+        Text = "M.D.",
+        Value = "M.D."
+    });
+    listItm.Add(new SelectListItem()
+    {
+        Text = "Project Manager",
+        Value = "Project Manager"
+    });
+    listItm.Add(new SelectListItem()
+    {
+        Text = "Software Engineer",
+        Value = "Software Engineer"
+    });
+    listItm.Add(new SelectListItem()
+    {
+        Text = "Others",
+        Value = "Others"
+    });
+
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.designation)
+        @Html.DropDownListFor(m => m.designation, listItm,"--Select--", new { @class = "form-control"})
+    </div>
+    <br />
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.address)
+        @Html.TextBoxFor(m => m.address, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.address)
+    </div>
+    <br />
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.email)
+        @Html.TextBoxFor(m => m.email, new { @class = "form-control", Type = "email" })
+        @Html.ValidationMessageFor(m => m.email)
+    </div>
+    <br />
+
+    <input type="submit" value="Submit" class="btn btn-primary" />
+}

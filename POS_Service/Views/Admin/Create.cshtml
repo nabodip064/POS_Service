@@ -1,0 +1,40 @@
+﻿@model POS_Service.Models.StockData
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<br/>
+
+@using (Html.BeginForm("AddProduct", "Admin"))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.ProductName)
+        @Html.TextBoxFor(m => m.ProductName, new { @class="form-control" })
+        @Html.ValidationMessageFor(m => m.ProductName)
+    </div>
+    <br/>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.ProductPrice)
+        @Html.TextBoxFor(m => m.ProductPrice, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.ProductPrice)
+    </div>
+    <br />
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.ProductQuantity)
+        @Html.TextBoxFor(m => m.ProductQuantity, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.ProductQuantity)
+    </div>
+    <br />
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.ProductImage)
+        @Html.TextBoxFor(m => m.ProductImage, new { type = "file", @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.ProductImage)
+    </div>
+    <br />
+
+    <input type="submit" value="Add Product" class="btn btn-primary"/>
+}
+

@@ -1,0 +1,43 @@
+﻿@model POS_Service.Models.CustomerData
+@{
+    ViewBag.Title = "CustomerDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<br/>
+
+@using (Html.BeginForm("AddCustomer", "Home"))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.Name)
+        @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Name)
+    </div>
+    <br/>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Address)
+        @Html.TextBoxFor(m => m.Address, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Address)
+    </div>
+    <br />
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.FnNumber)
+        @Html.TextBoxFor(m => m.FnNumber, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.FnNumber)
+    </div>
+    <br />
+
+    List<SelectListItem> listItm = new List<SelectListItem>();
+    listItm.Add(new SelectListItem() { Text = "Regular", Value = "1" });
+    listItm.Add(new SelectListItem() { Text = "Premium", Value = "2" });
+    listItm.Add(new SelectListItem() { Text = "Super Premium", Value = "3" });
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Name)
+        @Html.DropDownListFor(m => m.CustomerType, listItm, "--Select Type--", new { @class = "form-control"})
+    </div>
+    <br />
+
+    <input type="submit" value="Submit" class="btn btn-primary"/>
+}

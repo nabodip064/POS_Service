@@ -1,0 +1,25 @@
+﻿@model POS_Service.Models.LogInData
+@{
+    ViewBag.Title = "Controller";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+@using (Html.BeginForm("ControllerLogIn", "Controller"))
+{
+    <div class="form-group">
+        @Html.LabelFor(m => m.username)
+        @Html.TextBoxFor(m => m.username, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.username)
+    </div>
+    <br />
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.password)
+        @Html.TextBoxFor(m => m.password, new { @class = "form-control", Type = "password" })
+        @Html.ValidationMessageFor(m => m.password)
+    </div>
+    <br />
+
+    <input type="submit" value="LogIn" class="btn btn-primary" />
+}

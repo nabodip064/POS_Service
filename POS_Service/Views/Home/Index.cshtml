@@ -1,0 +1,37 @@
+﻿@model IEnumerable<POS_Service.Models.StockData>
+
+@{
+    ViewBag.Title = "Home Page";
+}
+<br/>
+
+<div class="row">
+    @{
+        foreach (var itm in Model)
+        {
+            int qnty = 1;
+            <div class="col-md-3" style="padding-left:20px; padding-right:20px; padding-bottom:10px; padding-top:10px;">
+                <div style="border:solid; border-width:1px; border-color:darkslategray; border-radius:5px 6px; background-color:lemonchiffon">
+                    <center>
+                        <h3><strong>@itm.ProductName</strong></h3>
+                        <img src="@Url.Content(itm.ProductImage)" alt = "Image" height="160px" width="220px"/>
+                        <h4>@itm.ProductPrice/-</h4>
+                        @using (Html.BeginForm("Add_Chart", "Home", new { productId = itm.Id, quantity = qnty }))
+                        {
+                            <input type="text" placeholder="Enter quantity" id="qnty" name="qnty" class="form-control" style="width:180px; margin-bottom:7px" />
+                            <input type="submit" value="Want to Buy" class="btn btn-primary" style="margin-bottom:5px" />
+                        }
+                    </center>
+                </div>
+            </div>
+        }
+    }
+</div>
+
+<br />
+<center>
+    @using (Html.BeginForm("SelectedProduct", "Home"))
+    {
+        <input type="submit" value="Selected Product" class="form-control" style="background-color:seagreen; color:white"/>
+    }
+</center>

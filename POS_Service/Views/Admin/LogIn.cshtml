@@ -1,0 +1,91 @@
+﻿@model IEnumerable<POS_Service.Models.StockData>
+@{
+    ViewBag.Title = "LogIn";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br />
+<p>
+    <h4>@Html.ActionLink("Add Product", "Create", "Admin")</h4>
+</p>
+<br />
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductPrice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ProductQuantity)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductQuantity)
+            </td>
+            <td>
+                @{ 
+                    decimal price = 1;
+                    int quantity = 1;
+                    string imgPath = null;
+                }
+                <div>
+                    @using (Html.BeginForm("UpdatePrice", "Admin", new { id = item.Id, price }))
+                    {
+                        <div class="col-md-9" align ="right">
+                            <input type="text" placeholder="Enter the Changing Price" id="price" name="price" class="form-control" />
+                        </div>
+                        <div class="col-md-3" align ="left">
+                            <input type="submit" value="Price" class="btn btn-primary" />
+                        </div>
+                    }
+                </div>
+                <div class="row">
+                    @using (Html.BeginForm("UpdateQnty", "Admin", new { id = item.Id, quantity }))
+                    {
+                        <div class="col-md-9" align ="right">
+                            <input type="text" placeholder="Enter the Changing quantity" id="quantity" name="quantity" class="form-control" />
+                        </div>
+                        <div class="col-md-3" align ="left">
+                            <input type="submit" value="Quantity" class="btn btn-primary" />
+                        </div>
+                    }
+                </div>
+                <div>
+                    @using (Html.BeginForm("UpdtImg", "Admin", new { id = item.Id, imgPath }))
+                    {
+                        <div class="col-md-9" align ="right">
+                            <input type="file" placeholder="Change Image" id="imgPath" name="imgPath" />
+                        </div>
+                        <div class="col-md-3" align ="left">
+                            <input type="submit" value="Image" class="btn btn-primary" />
+                        </div>
+                    }
+                </div>
+                <div>
+                    <center>
+                        @Html.ActionLink("Delete_Product", "DeleteProduct", new { id = item.Id })
+                    </center>
+                </div>
+            </td>
+        </tr>
+    }
+</table>

@@ -1,0 +1,68 @@
+﻿@model IEnumerable<POS_Service.Models.ChosenProduct>
+
+@{
+    ViewBag.Title = "SelectedProduct";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>SelectedProduct</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.productName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.quantity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.productPrice)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model)
+{
+    int quantity = 1;
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.productName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.quantity)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.productPrice)
+        </td>
+        <td>
+            <div>
+                @using (Html.BeginForm("EditProduct", "Home", new { id = item.Id, quantity, guid = ViewBag.guid }))
+                {
+                    <input type="text" placeholder="Change quantity" id="quantity" name="quantity" />
+                    <input type="submit" value="Change" />
+                }
+            </div>
+            @Html.ActionLink("Delete", "DeleteProduct", new { id = item.Id, guid = ViewBag.guid })
+        </td>
+    </tr>
+}
+</table>
+<br/>
+<div class="row">
+    <div class="col-md-6">
+        <center>
+            @using (Html.BeginForm("Index", "Home"))
+            {
+                <input type="submit" value="Order More" class="form-control" style="background-color:seagreen; color:white"/>
+            }
+        </center>
+    </div>
+    <div class="col-md-6">
+        <center>
+            @using (Html.BeginForm("CustomerDetails", "Home"))
+            {
+                <input type="submit" value="Go to Buy these" class="form-control" style="background-color:seagreen; color:white"/>
+            }
+        </center>
+    </div>
+</div>
